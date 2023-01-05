@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/theme.dart';
 import 'package:flutter_ecommerce/widgets/product_card.dart';
+import 'package:flutter_ecommerce/widgets/product_tile.dart';
 
 
 class HomePage extends StatelessWidget {
@@ -212,6 +213,39 @@ class HomePage extends StatelessWidget {
     );
   }
 
+  /* New Arrivals Title */
+  Widget newArrivalsTitle() {
+    return Container(
+      margin: EdgeInsets.only(
+        top: defaultMargin,
+        left: defaultMargin,
+        right: defaultMargin,
+      ),
+      child: Text(
+        'New Arrivals',
+        style: primaryTextStyle.copyWith(
+          fontSize: 22,
+          fontWeight: semiBold,
+        ),
+      ),
+    );
+  }
+
+  /* New Arrivals Card */
+  Widget newArrivals() {
+    return Container(
+      margin: const EdgeInsets.only(top: 14),
+      child: Column(
+        children: [
+          ProductTile(),
+          ProductTile(),
+          ProductTile(),
+          ProductTile(),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -219,7 +253,9 @@ class HomePage extends StatelessWidget {
         header(),
         categories(),
         popularProductsTitle(),
-        popularProducts()
+        popularProducts(),
+        newArrivalsTitle(),
+        newArrivals()
       ],
     );
   }
