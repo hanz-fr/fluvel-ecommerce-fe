@@ -6,7 +6,7 @@ class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   /* Header */
-  Widget header(){
+  Widget header() {
     return Container(
       margin: EdgeInsets.only(
         top: defaultMargin,
@@ -52,11 +52,129 @@ class HomePage extends StatelessWidget {
     );
   }
 
+  /* Categories */
+  Widget categories() {
+    return Container(
+      margin: EdgeInsets.only(top: defaultMargin),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: [
+            SizedBox(width: defaultMargin,),
+            Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12, 
+                vertical: 10
+              ),
+              margin: const EdgeInsets.only(right: 16),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: primaryColor,
+              ),
+              child: Text(
+                'All Shoes',
+                style: primaryTextStyle.copyWith(
+                  fontSize: 13,
+                  fontWeight: medium,
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12, 
+                vertical: 10
+              ),
+              margin: const EdgeInsets.only(right: 16),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: transparentColor,
+                border: Border.all(
+                  color: subtitleColor
+                ),
+              ),
+              child: Text(
+                'Running',
+                style: subtitleTextStyle.copyWith(
+                  fontSize: 13,
+                  fontWeight: medium,
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12, 
+                vertical: 10
+              ),
+              margin: const EdgeInsets.only(right: 16),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: transparentColor,
+                border: Border.all(
+                  color: subtitleColor
+                ),
+              ),
+              child: Text(
+                'Training',
+                style: subtitleTextStyle.copyWith(
+                  fontSize: 13,
+                  fontWeight: medium,
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12, 
+                vertical: 10
+              ),
+              margin: const EdgeInsets.only(right: 16),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: transparentColor,
+                border: Border.all(
+                  color: subtitleColor
+                ),
+              ),
+              child: Text(
+                'Basketball',
+                style: subtitleTextStyle.copyWith(
+                  fontSize: 13,
+                  fontWeight: medium,
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12, 
+                vertical: 10
+              ),
+              margin: const EdgeInsets.only(right: 16),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: transparentColor,
+                border: Border.all(
+                  color: subtitleColor
+                ),
+              ),
+              child: Text(
+                'Hiking',
+                style: subtitleTextStyle.copyWith(
+                  fontSize: 13,
+                  fontWeight: medium,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView(
       children: [
         header(),
+        categories()
       ],
     );
   }
