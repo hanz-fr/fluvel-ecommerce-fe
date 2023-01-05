@@ -34,6 +34,10 @@ TextStyle subtitleTextStyle = GoogleFonts.poppins(
 );
 
 
+TextStyle puprleTextStyle = GoogleFonts.poppins(
+  color: primaryColor
+);
+
 FontWeight light = FontWeight.w300;
 FontWeight regular = FontWeight.w400;
 FontWeight medium = FontWeight.w500;
