@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce/widgets/chat_tile.dart';
 
 import '../../theme.dart';
 
@@ -24,8 +25,8 @@ class ChatPage extends StatelessWidget {
   }
 
 
-  /* Content */
-  Widget content() {
+  /* Content Empty Chat */
+  Widget emptyChat() {
     return Expanded(
       child: Container(
         width: double.infinity,
@@ -74,6 +75,24 @@ class ChatPage extends StatelessWidget {
                 onPressed: () {},
               ),
             ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /* Content */
+  Widget content() {
+    return Expanded(
+      child: Container(
+        width: double.infinity,
+        color: bgColor3,
+        child: ListView(
+          padding: EdgeInsets.symmetric(
+            horizontal: defaultMargin,
+          ),
+          children: [
+            ChatTile()
           ],
         ),
       ),
