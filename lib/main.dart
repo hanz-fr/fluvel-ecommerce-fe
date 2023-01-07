@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => const MainPage(),
         '/detail-chat': (context) => const DetailChatPage(), 
         '/edit-profile': (context) => const EditProfilePage(),
-        '/product': (context) => const ProductPage(),
+        '/product': (context) => ProductPage(),
       },
     );
   }
