@@ -145,13 +145,14 @@ class DetailChatPage extends StatelessWidget {
       );
     }
 
+    /* Content */
     Widget content() {
       return ListView(
         padding: EdgeInsets.symmetric(horizontal: defaultMargin),
         children: [
           ChatBubble(
             isSender: true,
-            text: 'Hi, this item is still available?',
+            text: 'Hi, is this item is still available?',
             hasProduct: true,
           ),
           ChatBubble(

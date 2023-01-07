@@ -52,6 +52,7 @@ class ChatPage extends StatelessWidget {
               style: secondaryTextStyle,
             ),
             const SizedBox(height: 20,),
+            // ignore: sized_box_for_whitespace
             Container(
               height: 44,
               child: TextButton(
@@ -91,7 +92,7 @@ class ChatPage extends StatelessWidget {
           padding: EdgeInsets.symmetric(
             horizontal: defaultMargin,
           ),
-          children: [
+          children: const [
             ChatTile()
           ],
         ),
