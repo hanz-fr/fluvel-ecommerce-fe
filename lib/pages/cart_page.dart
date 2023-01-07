@@ -90,16 +90,97 @@ class CartPage extends StatelessWidget {
         padding: EdgeInsets.symmetric(
           horizontal: defaultMargin
         ),
+        // ignore: prefer_const_literals_to_create_immutables
         children: [
           CartCard(),
         ]
       );
     } 
 
+
+    /* Custom BottomNavBar */
+    Widget customBottomNav() {
+      // ignore: sized_box_for_whitespace
+      return Container(
+        height: 180,
+        child: Column(
+          children: [
+            // ignore: avoid_unnecessary_containers
+            Container(
+              margin: EdgeInsets.symmetric(
+                horizontal: defaultMargin
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Subtotal',
+                    style: primaryTextStyle,
+                  ),
+                  Text(
+                    '\$287,90',
+                    style: priceTextStyle.copyWith(
+                      fontSize: 16,
+                      fontWeight: semiBold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            Divider(
+              thickness: 0.3,
+              color: subtitleColor,
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            Container(
+              height: 50,
+              margin: EdgeInsets.symmetric(
+                horizontal: defaultMargin
+              ),
+              child: TextButton(
+                onPressed: () {},
+                style: TextButton.styleFrom(
+                  backgroundColor: primaryColor,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  )
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Continue to Checkout',
+                      style: primaryTextStyle.copyWith(
+                        fontSize: 16,
+                        fontWeight: semiBold,
+                      ),
+                    ),
+                    Icon(
+                      Icons.arrow_forward,
+                      color: primaryTextColor,
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+      );
+    }
+
     return Scaffold(
       backgroundColor: bgColor3,
       appBar: header(),
       body: content(),
+      bottomNavigationBar: customBottomNav(),
     );
   }
 }
