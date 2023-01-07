@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/theme.dart';
 
+import '../widgets/cart_card.dart';
+
 
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
@@ -81,10 +83,23 @@ class CartPage extends StatelessWidget {
       );
     }
 
+
+    /* Cart Content */
+    Widget content() {
+      return ListView(
+        padding: EdgeInsets.symmetric(
+          horizontal: defaultMargin
+        ),
+        children: [
+          CartCard(),
+        ]
+      );
+    } 
+
     return Scaffold(
       backgroundColor: bgColor3,
       appBar: header(),
-      body: emptyCart(),
+      body: content(),
     );
   }
 }
