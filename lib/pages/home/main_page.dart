@@ -129,7 +129,7 @@ class _MainPageState extends State<MainPage> {
         case 3:
           return ProfilePage();
 
-        default: return HomePage();
+        default: return const HomePage();
       }
     }
 

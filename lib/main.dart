@@ -6,6 +6,7 @@ import 'package:flutter_ecommerce/pages/sign_up_page.dart';
 import 'package:flutter_ecommerce/pages/splash_page.dart';
 
 import 'pages/edit_profile_page.dart';
+import 'pages/product_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => const MainPage(),
         '/detail-chat': (context) => const DetailChatPage(), 
         '/edit-profile': (context) => const EditProfilePage(),
+        '/product': (context) => const ProductPage(),
       },
     );
   }
