@@ -14,7 +14,13 @@ class CheckoutPage extends StatelessWidget {
           backgroundColor: bgColor1,
           elevation: 0,
           centerTitle: true,
-          title: const Text('Checkout Details'),
+          title: Text(
+            'Checkout Details',
+            style: primaryTextStyle.copyWith(
+              fontSize: 18,
+              fontWeight: medium,
+            ),
+          ),
         ),
       );
     }
@@ -246,7 +252,11 @@ class CheckoutPage extends StatelessWidget {
               vertical: defaultMargin,
             ),
             child: TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamedAndRemoveUntil(
+                  context, '/checkout-success', (route) => false
+                );
+              },
               style: TextButton.styleFrom(
                 backgroundColor: primaryColor,
                 shape: RoundedRectangleBorder(

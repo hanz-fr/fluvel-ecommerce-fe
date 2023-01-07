@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/pages/checkout_page.dart';
+import 'package:flutter_ecommerce/pages/checkout_success_page.dart';
 import 'package:flutter_ecommerce/pages/detail_chat_page.dart';
 import 'package:flutter_ecommerce/pages/home/main_page.dart';
 import 'package:flutter_ecommerce/pages/sign_in_page.dart';
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         '/product': (context) => ProductPage(),
         '/cart': (context) => const CartPage(),
         '/checkout': (context) => const CheckoutPage(),
+        '/checkout-success':(context) => const CheckoutSuccessPage(),
       },
     );
   }
