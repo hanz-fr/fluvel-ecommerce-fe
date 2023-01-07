@@ -5,6 +5,8 @@ import 'package:flutter_ecommerce/pages/sign_in_page.dart';
 import 'package:flutter_ecommerce/pages/sign_up_page.dart';
 import 'package:flutter_ecommerce/pages/splash_page.dart';
 
+import 'pages/edit_profile_page.dart';
+
 void main() => runApp(MyApp());
 
 // ignore: use_key_in_widget_constructors
@@ -21,6 +23,7 @@ class MyApp extends StatelessWidget {
         '/sign-up': (context) => const SignUpPage(),
         '/home': (context) => const MainPage(),
         '/detail-chat': (context) => const DetailChatPage(), 
+        '/edit-profile': (context) => const EditProfilePage(),
       },
     );
   }

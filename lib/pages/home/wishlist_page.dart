@@ -16,8 +16,12 @@ class WishlistPage extends StatelessWidget {
         automaticallyImplyLeading: false,
         elevation: 0,
         centerTitle: true,
-        title: const Text(
+        title: Text(
           'Favorite Shoes',
+          style: primaryTextStyle.copyWith(
+            fontWeight: medium,
+            fontSize: 18
+          ),  
         ),
       );
     }
