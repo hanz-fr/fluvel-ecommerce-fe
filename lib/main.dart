@@ -5,6 +5,7 @@ import 'package:flutter_ecommerce/pages/sign_in_page.dart';
 import 'package:flutter_ecommerce/pages/sign_up_page.dart';
 import 'package:flutter_ecommerce/pages/splash_page.dart';
 
+import 'pages/cart_page.dart';
 import 'pages/edit_profile_page.dart';
 import 'pages/product_page.dart';
 
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         '/detail-chat': (context) => const DetailChatPage(), 
         '/edit-profile': (context) => const EditProfilePage(),
         '/product': (context) => ProductPage(),
+        '/cart': (context) => const CartPage(),
       },
     );
   }
