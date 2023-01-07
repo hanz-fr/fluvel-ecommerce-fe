@@ -8,6 +8,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    /* Header */
     Widget header() {
       return AppBar(
         backgroundColor: bgColor1,
@@ -56,9 +57,72 @@ class ProfilePage extends StatelessWidget {
       );
     }
 
+    /* MenuItem */
+    Widget menuItem(String text) {
+      return Container(
+        margin: const EdgeInsets.only(top: 16),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              text,
+              style: secondaryTextStyle.copyWith(fontSize: 13,),
+            ),
+            Icon(
+              Icons.chevron_right,
+              color: primaryTextColor,
+            ),
+          ],
+        ),
+      );
+    }
+
+    /* Content */
+    Widget content() {
+      return Expanded(
+        child: Container(
+          padding: EdgeInsets.symmetric(
+            horizontal: defaultMargin
+          ),
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: bgColor3
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 20,),
+              Text(
+                'Account',
+                style:  primaryTextStyle.copyWith(
+                  fontSize: 16,
+                  fontWeight: semiBold,
+                ),
+              ),
+              menuItem('Edit Profile'),
+              menuItem('Your Orders'),
+              menuItem('Help'),
+              const SizedBox(height: 30,),
+              Text(
+                'Account',
+                style:  primaryTextStyle.copyWith(
+                  fontSize: 16,
+                  fontWeight: semiBold,
+                ),
+              ),
+              menuItem('Privacy & Policy'),
+              menuItem('Term of Service'),
+              menuItem('Rate App'),
+            ],
+          ),
+        ),
+      );
+    }
+
     return Column(
       children: [
         header(),
+        content(),
       ],
     );
   }
