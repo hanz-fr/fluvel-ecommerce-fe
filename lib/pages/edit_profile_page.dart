@@ -38,6 +38,104 @@ class EditProfilePage extends StatelessWidget {
       );
     }
 
+    /* Name Input */
+    Widget nameInput() {
+      return Container(
+        margin: EdgeInsets.only(
+          top: defaultMargin
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Name',
+              style: secondaryTextStyle.copyWith(
+                fontSize: 13,
+              ),
+            ),
+            TextFormField(
+              style: primaryTextStyle,
+              decoration: InputDecoration(
+                hintText: 'Alex Keinnzal',
+                hintStyle: primaryTextStyle,
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: subtitleColor
+                  ),
+                )
+              ),
+            )
+          ],
+        ),
+      );
+    }
+
+
+    /* Username Input */
+    Widget usernameInput() {
+      return Container(
+        margin: EdgeInsets.only(
+          top: defaultMargin
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Username',
+              style: secondaryTextStyle.copyWith(
+                fontSize: 13,
+              ),
+            ),
+            TextFormField(
+              style: primaryTextStyle,
+              decoration: InputDecoration(
+                hintText: '@alexkun',
+                hintStyle: primaryTextStyle,
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: subtitleColor
+                  ),
+                )
+              ),
+            )
+          ],
+        ),
+      );
+    }
+
+
+    /* Email Input */
+    Widget emailInput() {
+      return Container(
+        margin: EdgeInsets.only(
+          top: defaultMargin
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Email Address',
+              style: secondaryTextStyle.copyWith(
+                fontSize: 13,
+              ),
+            ),
+            TextFormField(
+              style: primaryTextStyle,
+              decoration: InputDecoration(
+                hintText: '@alexdotcom',
+                hintStyle: primaryTextStyle,
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: subtitleColor
+                  ),
+                )
+              ),
+            )
+          ],
+        ),
+      );
+    }
+
     /* Content */
     Widget content() {
       return Container(
@@ -61,6 +159,9 @@ class EditProfilePage extends StatelessWidget {
                 ),
               ),
             ),
+            nameInput(),
+            usernameInput(),
+            emailInput(),
           ],
         ),
       );
@@ -68,6 +169,7 @@ class EditProfilePage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: bgColor3,
+      resizeToAvoidBottomInset: false,
       appBar: header(),
       body: content(),
     );
