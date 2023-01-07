@@ -127,7 +127,7 @@ class _MainPageState extends State<MainPage> {
           return const WishlistPage();
 
         case 3:
-          return const ProfilePage();
+          return ProfilePage();
 
         default: return HomePage();
       }
