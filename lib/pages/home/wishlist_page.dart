@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce/widgets/wishlist_card.dart';
 
 import '../../theme.dart';
 
@@ -7,6 +8,7 @@ class WishlistPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     /* Header */
     Widget header() {
       return AppBar(
@@ -77,10 +79,28 @@ class WishlistPage extends StatelessWidget {
       );
     }
 
+    /* Wishlist Content */
+    Widget content() {
+      return Expanded(
+        child: Container(
+          color: bgColor3,
+          child: ListView(
+            padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+            children: [
+              WishlistCard(),
+              WishlistCard(),
+              WishlistCard(),
+            ],
+          ),
+        ),
+      );
+    }
+
     return Column(
       children: [
         header(),
-        emptyWishlist(),
+        // emptyWishlist(),
+        content(),
       ],
     );
   }
