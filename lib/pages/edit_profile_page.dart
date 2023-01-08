@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce/models/user_model.dart';
 import 'package:flutter_ecommerce/theme.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/auth_provider.dart';
 
 class EditProfilePage extends StatelessWidget {
   const EditProfilePage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel user = authProvider.user;
 
     /* Header */
     PreferredSize header() {
@@ -56,7 +63,7 @@ class EditProfilePage extends StatelessWidget {
             TextFormField(
               style: primaryTextStyle,
               decoration: InputDecoration(
-                hintText: 'Alex Keinnzal',
+                hintText: user.name,
                 hintStyle: primaryTextStyle,
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
@@ -89,7 +96,7 @@ class EditProfilePage extends StatelessWidget {
             TextFormField(
               style: primaryTextStyle,
               decoration: InputDecoration(
-                hintText: '@alexkun',
+                hintText: '@${user.username}',
                 hintStyle: primaryTextStyle,
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
@@ -122,7 +129,7 @@ class EditProfilePage extends StatelessWidget {
             TextFormField(
               style: primaryTextStyle,
               decoration: InputDecoration(
-                hintText: '@alexdotcom',
+                hintText: user.email,
                 hintStyle: primaryTextStyle,
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
@@ -150,11 +157,12 @@ class EditProfilePage extends StatelessWidget {
               margin: EdgeInsets.only(
                 top: defaultMargin
               ),
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
-                  image: AssetImage(
-                    'assets/profile_image.png',
+                  fit: BoxFit.fill,
+                  image: NetworkImage(
+                    user.profilePhotoUrl.toString(),
                   ),
                 ),
               ),

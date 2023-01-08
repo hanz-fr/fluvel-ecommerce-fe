@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce/providers/auth_provider.dart';
 import 'package:flutter_ecommerce/theme.dart';
 import 'package:flutter_ecommerce/widgets/product_card.dart';
 import 'package:flutter_ecommerce/widgets/product_tile.dart';
+import 'package:provider/provider.dart';
+
+import '../../models/user_model.dart';
 
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);  
+
+  @override
+  Widget build(BuildContext context) {
+    
+  AuthProvider authProvider = Provider.of<AuthProvider>(context);
+  UserModel user = authProvider.user;
 
   /* Header */
   Widget header() {
@@ -22,14 +32,14 @@ class HomePage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Halo, Alex',
+                  'Halo, ${user.name}',
                   style: primaryTextStyle.copyWith(
                     fontSize: 24,
                     fontWeight: semiBold,
                   ),
                 ),
                 Text(
-                  '@alexander',
+                  '@${user.username}',
                   style: subtitleTextStyle.copyWith(
                     fontSize: 16
                   ),
@@ -43,8 +53,8 @@ class HomePage extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(
-                image: AssetImage(
-                  'assets/profile_image.png',
+                image: NetworkImage(
+                  user.profilePhotoUrl.toString(),
                 ),
               ),
             ),
@@ -201,7 +211,7 @@ class HomePage extends StatelessWidget {
               width: defaultMargin,
             ),
             Row(
-              children: [
+              children: const [
                 ProductCard(),
                 ProductCard(),
                 ProductCard(),
@@ -236,7 +246,7 @@ class HomePage extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(top: 14),
       child: Column(
-        children: [
+        children: const [
           ProductTile(),
           ProductTile(),
           ProductTile(),
@@ -246,8 +256,6 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
     return ListView(
       children: [
         header(),

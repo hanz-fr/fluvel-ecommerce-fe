@@ -1,13 +1,67 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/theme.dart';
+import 'package:flutter_ecommerce/widgets/loading_button.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/auth_provider.dart';
+import '../services/auth_service.dart';
 
 // ignore: must_be_immutable
-class SignInPage extends StatelessWidget {
+class SignInPage extends StatefulWidget {
 
   const SignInPage({Key? key}) : super(key: key);
 
   @override
+  State<SignInPage> createState() => _SignInPageState();
+}
+
+class _SignInPageState extends State<SignInPage> {
+
+  late TextEditingController emailController = TextEditingController();
+
+  late TextEditingController passwordController = TextEditingController();
+
+  bool isLoading = false;
+
+  @override
   Widget build(BuildContext context) {
+
+    /* SIGN IN HANDLER */
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
+    handleSignIn() async {
+
+      setState(() {
+        isLoading = true;
+      });
+
+      if(await authProvider.login(
+        email: emailController.text.toString(), 
+        password: passwordController.text.toString()
+      )) {
+
+        // ignore: use_build_context_synchronously
+        Navigator.pushNamed(context, '/home');
+      
+      } else {
+
+        // ignore: use_build_context_synchronously
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: alertColor,
+            content: const Text(
+              'Login Failed!',
+              textAlign: TextAlign.center,
+            )
+          ),
+        );
+      }
+
+      setState(() {
+        isLoading = false;
+      });
+
+    }
 
     Widget header(){
       return Container(
@@ -60,6 +114,7 @@ class SignInPage extends StatelessWidget {
                     const SizedBox(width: 16),
                     Expanded(
                       child: TextFormField(
+                        controller: emailController,
                         style: primaryTextStyle,
                         decoration: InputDecoration.collapsed(
                           hintText: 'Your Email Address',
@@ -104,6 +159,7 @@ class SignInPage extends StatelessWidget {
                     const SizedBox(width: 16),
                     Expanded(
                       child: TextFormField(
+                        controller: passwordController,
                         style: primaryTextStyle,
                         obscureText: true,
                         decoration: InputDecoration.collapsed(
@@ -128,9 +184,7 @@ class SignInPage extends StatelessWidget {
         width: double.infinity,
         margin: const EdgeInsets.only(top: 30),
         child: TextButton(
-          onPressed: () {
-            Navigator.pushNamed(context, '/home');
-          },
+          onPressed: handleSignIn,
           style: TextButton.styleFrom(
             backgroundColor: primaryColor,
             shape: RoundedRectangleBorder(
@@ -195,7 +249,7 @@ class SignInPage extends StatelessWidget {
               header(),
               emailInput(),
               passwordInput(),
-              signInButton(),
+              isLoading ? const LoadingButton() : signInButton(),
               const Spacer(),
               footer(),
             ],
