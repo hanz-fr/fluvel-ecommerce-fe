@@ -14,7 +14,6 @@ class AuthProvider with ChangeNotifier {
     notifyListeners();
   }
 
-
   /* Function untuk melakukan register */
   Future<bool> register({
 
@@ -41,6 +40,7 @@ class AuthProvider with ChangeNotifier {
 
     } catch (e) {
 
+      print(e);
       return false;
 
     }

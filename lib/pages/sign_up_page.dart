@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/providers/auth_provider.dart';
+import 'package:flutter_ecommerce/services/auth_service.dart';
 import 'package:flutter_ecommerce/theme.dart';
 import 'package:flutter_ecommerce/widgets/loading_button.dart';
 import 'package:provider/provider.dart';
@@ -53,12 +54,7 @@ class _SignUpPageState extends State<SignUpPage> {
         isLoading = true;
       });
 
-      if(await authProvider.register(
-        name: nameController.text.toString(), 
-        username: usernameController.text.toString(), 
-        email: emailController.text.toString(), 
-        password: passwordController.text.toString()
-      )) {
+      if(AuthService.statusCode == 200) {
 
         Navigator.pushNamed(context, '/home');
       
@@ -74,6 +70,13 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
         );
       }
+
+      await authProvider.register(
+        name: nameController.text.toString(), 
+        username: usernameController.text.toString(), 
+        email: emailController.text.toString(), 
+        password: passwordController.text.toString()
+      );
 
       setState(() {
         isLoading = false;
