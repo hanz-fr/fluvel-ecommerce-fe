@@ -3,6 +3,7 @@ class UserModel {
   late String name;
   late String email;
   late String username;
+  late String password;
   late String profilePhotoUrl;
   late String token;
 
@@ -11,6 +12,7 @@ class UserModel {
     required this.id,
     required this.name,
     required this.username,
+    required this.password,
     required this.email,
     required this.profilePhotoUrl,
     required this.token,
@@ -21,6 +23,7 @@ class UserModel {
     id = json['id'];
     name = json['name'];
     username = json['username'];
+    password = json['password'];
     email = json['email'];
     profilePhotoUrl = json['profile_photo_url'];
     token = json['token'];
@@ -32,6 +35,7 @@ class UserModel {
       'id': id,
       'name': name,
       'username': username,
+      'password': password,
       'email': email,
       'profile_photo_url': profilePhotoUrl,
       'token': token

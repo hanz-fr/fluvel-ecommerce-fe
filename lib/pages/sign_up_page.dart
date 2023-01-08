@@ -1,11 +1,85 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce/theme.dart';
+import 'dart:async';
 
-class SignUpPage extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce/providers/auth_provider.dart';
+import 'package:flutter_ecommerce/theme.dart';
+import 'package:flutter_ecommerce/widgets/loading_button.dart';
+import 'package:provider/provider.dart';
+
+// ignore: must_be_immutable
+class SignUpPage extends StatefulWidget {
+
+
   const SignUpPage({Key? key}) : super(key: key);
 
   @override
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
+
+  late TextEditingController nameController = TextEditingController();
+
+  late TextEditingController usernameController = TextEditingController();
+
+  late TextEditingController emailController = TextEditingController();
+
+  late TextEditingController passwordController = TextEditingController();
+
+  bool isLoading = false;
+
+
+  void showCircularIndicator() {
+    setState(() {
+      isLoading = true;
+    });
+
+    
+    Future.delayed(const Duration(milliseconds: 2000), () {
+      setState(() {
+        isLoading = false;
+      });
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
+    handleSignUp() async {
+
+      setState(() {
+        isLoading = true;
+      });
+
+      if(await authProvider.register(
+        name: nameController.text.toString(), 
+        username: usernameController.text.toString(), 
+        email: emailController.text.toString(), 
+        password: passwordController.text.toString()
+      )) {
+
+        Navigator.pushNamed(context, '/home');
+      
+      } else {
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: alertColor,
+            content: const Text(
+              'Register Failed!',
+              textAlign: TextAlign.center,
+            )
+          ),
+        );
+      }
+
+      setState(() {
+        isLoading = false;
+      });
+
+    }
 
     Widget header(){
       return Container(
@@ -59,6 +133,7 @@ class SignUpPage extends StatelessWidget {
                     Expanded(
                       child: TextFormField(
                         style: primaryTextStyle,
+                        controller: nameController,
                         decoration: InputDecoration.collapsed(
                           hintText: 'Your Fullname',
                           hintStyle: subtitleTextStyle,
@@ -103,6 +178,7 @@ class SignUpPage extends StatelessWidget {
                     Expanded(
                       child: TextFormField(
                         style: primaryTextStyle,
+                        controller: usernameController,
                         decoration: InputDecoration.collapsed(
                           hintText: 'Your Username',
                           hintStyle: subtitleTextStyle,
@@ -147,6 +223,7 @@ class SignUpPage extends StatelessWidget {
                     Expanded(
                       child: TextFormField(
                         style: primaryTextStyle,
+                        controller: emailController,
                         decoration: InputDecoration.collapsed(
                           hintText: 'Your Email Address',
                           hintStyle: subtitleTextStyle,
@@ -192,6 +269,7 @@ class SignUpPage extends StatelessWidget {
                       child: TextFormField(
                         style: primaryTextStyle,
                         obscureText: true,
+                        controller: passwordController,
                         decoration: InputDecoration.collapsed(
                           hintText: 'Your Password',
                           hintStyle: subtitleTextStyle,
@@ -209,21 +287,21 @@ class SignUpPage extends StatelessWidget {
     
     Widget signUpButton() {
 
+      // return LoadingButton();
+
       return Container(
         height: 50,
         width: double.infinity,
         margin: const EdgeInsets.only(top: 30),
         child: TextButton(
-          onPressed: () {
-            Navigator.pushNamed(context, '/home');
-          },
+          onPressed: handleSignUp,
           style: TextButton.styleFrom(
             backgroundColor: primaryColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
             )
           ),
-          child: Text(
+          child: isLoading ? CircularProgressIndicator() : Text(
             'Sign Up',
             style: primaryTextStyle.copyWith(
               fontSize: 16,
@@ -283,7 +361,7 @@ class SignUpPage extends StatelessWidget {
               usernameInput(),
               emailInput(),
               passwordInput(),
-              signUpButton(),
+              isLoading ? const LoadingButton() : signUpButton(),
               const Spacer(),
               footer(),
             ],

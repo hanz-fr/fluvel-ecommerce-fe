@@ -11,10 +11,10 @@ class AuthService {
   /* Register Function */
   Future<UserModel> register({
 
-    required String name, 
-    required String username,
-    required String email,
-    required String password,
+    required final String name, 
+    required final String username,
+    required final String email,
+    required final String password,
 
   }) async {
 
@@ -33,14 +33,18 @@ class AuthService {
       body: body,
     );
 
+    // print(jsonDecode(response.body)['meta']['code']);
+    
+
     if(response.statusCode == 200) {
 
+      
       var data = jsonDecode(response.body)['data'];
       UserModel user = UserModel.fromJson(data['user']);
       // ignore: prefer_interpolation_to_compose_strings
       user.token = 'Bearer ' + data['access_token'];
-
-
+      
+      
       return user;
 
     } else {
