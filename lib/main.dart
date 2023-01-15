@@ -34,11 +34,10 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (context) => SplashPage(),
           '/sign-in': (context) => const SignInPage(),
-          '/sign-up': (context) => SignUpPage(),
+          '/sign-up': (context) => const SignUpPage(),
           '/home': (context) => const MainPage(),
           '/detail-chat': (context) => const DetailChatPage(), 
           '/edit-profile': (context) => const EditProfilePage(),
-          '/product': (context) => ProductPage(),
           '/cart': (context) => const CartPage(),
           '/checkout': (context) => const CheckoutPage(),
           '/checkout-success':(context) => const CheckoutSuccessPage(),
