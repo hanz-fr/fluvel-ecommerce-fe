@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/theme.dart';
+import 'package:provider/provider.dart';
+
+import '../models/product_model.dart';
+import '../providers/wishlist_provider.dart';
 
 // ignore: use_key_in_widget_constructors
 class WishlistCard extends StatelessWidget {
 
+  late final ProductModel product;
+  WishlistCard(this.product);
+
   @override
   Widget build(BuildContext context) {
+
+    WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
+
     return Container(
       margin: const EdgeInsets.only(top: 20),
       padding: const EdgeInsets.only(
@@ -22,8 +32,8 @@ class WishlistCard extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
-            child: Image.asset(
-              'assets/image_shoes.png',
+            child: Image.network(
+              product.galleries![0].url!,
               width: 60,
             ),
           ),
@@ -33,21 +43,26 @@ class WishlistCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Terrex Urban Low',
+                  product.name!,
                   style: primaryTextStyle.copyWith(
                     fontWeight: semiBold,
                   ),
                 ),
                 Text(
-                  '\$142,23',
+                  '\$${product.price}',
                   style: priceTextStyle
                 ),
               ],
             ),
           ),
-          Image.asset(
-            'assets/button_wishlist_active.png',
-            width: 34,
+          GestureDetector(
+            onTap: () {
+              wishlistProvider.setProduct(product);
+            },
+            child: Image.asset(
+              'assets/button_wishlist_active.png',
+              width: 34,
+            ),
           )
         ],
       ),

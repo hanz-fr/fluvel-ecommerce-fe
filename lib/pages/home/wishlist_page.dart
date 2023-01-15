@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce/widgets/wishlist_card.dart';
+import 'package:provider/provider.dart';
 
+import '../../providers/wishlist_provider.dart';
 import '../../theme.dart';
 
 class WishlistPage extends StatelessWidget {
@@ -8,6 +10,8 @@ class WishlistPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
 
     /* Header */
     Widget header() {
@@ -57,7 +61,9 @@ class WishlistPage extends StatelessWidget {
               Container(
                 height: 44,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/home');
+                  },
                   style: TextButton.styleFrom(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 24,
@@ -90,11 +96,7 @@ class WishlistPage extends StatelessWidget {
           color: bgColor3,
           child: ListView(
             padding: EdgeInsets.symmetric(horizontal: defaultMargin),
-            children: [
-              WishlistCard(),
-              WishlistCard(),
-              WishlistCard(),
-            ],
+            children: wishlistProvider.wishlist.map((product) => WishlistCard(product)).toList(),
           ),
         ),
       );
@@ -104,7 +106,7 @@ class WishlistPage extends StatelessWidget {
       children: [
         header(),
         // emptyWishlist(),
-        content(),
+        wishlistProvider.wishlist.isEmpty ? emptyWishlist() : content(),
       ],
     );
   }
