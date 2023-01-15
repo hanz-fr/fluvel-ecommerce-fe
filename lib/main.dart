@@ -7,6 +7,7 @@ import 'package:flutter_ecommerce/pages/sign_in_page.dart';
 import 'package:flutter_ecommerce/pages/sign_up_page.dart';
 import 'package:flutter_ecommerce/pages/splash_page.dart';
 import 'package:flutter_ecommerce/providers/auth_provider.dart';
+import 'package:flutter_ecommerce/providers/product_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'pages/cart_page.dart';
@@ -25,7 +26,8 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (context) => AuthProvider(),
-        )
+        ),
+        ChangeNotifierProvider(create: (context) => ProductProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
